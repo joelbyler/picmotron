@@ -11,6 +11,11 @@ defmodule UserInterface.Endpoint do
     at: "/", from: :user_interface, gzip: false,
     only: ~w(css fonts images js favicon.ico robots.txt)
 
+  plug Plug.Static,
+    at: Application.get_env(:user_interface, :image_path),
+    from: Application.get_env(:user_interface, :image_location),
+    gzip: false
+
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.
   if code_reloading? do

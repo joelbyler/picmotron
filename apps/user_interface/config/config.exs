@@ -23,5 +23,5 @@ config :logger, :console,
 import_config "#{Mix.env}.exs"
 
 config :user_interface,
-  image_path: "images/sample_images",
+  image_path: "pic_images/",
   image_location: "web/static/assets/images/sample_images"

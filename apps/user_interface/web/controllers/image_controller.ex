@@ -14,7 +14,7 @@ defmodule UserInterface.ImageController do
 
   defp path_for_image(image) do
     image_path = Application.get_env(:user_interface, :image_path)
-    "#{image_path}/#{image}"
+    "#{image_path}#{image}"
   end
 
   defp placeholders do
