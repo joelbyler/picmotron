@@ -1,0 +1,5 @@
+<div class="row">
+<%= for image <- @images do %>
+  <img src="<%= image %>" class="col-sm-4 thumbnail">
+<% end %>
+</div>
