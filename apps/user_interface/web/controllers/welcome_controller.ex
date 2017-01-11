@@ -1,7 +1,7 @@
-defmodule UserInterface.PageController do
+defmodule UserInterface.WelcomeController do
   use UserInterface.Web, :controller
 
   def index(conn, _params) do
-    render conn, "index.html"
+    redirect conn, to: "/images"
   end
 end

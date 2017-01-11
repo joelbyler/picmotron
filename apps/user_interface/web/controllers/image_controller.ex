@@ -6,15 +6,21 @@ defmodule UserInterface.ImageController do
   end
 
   defp images do
-    {:ok, images} =
-      Application.get_env(:user_interface, :image_location)
-      |> File.ls
-    images |> Enum.map(fn(image) -> path_for_image(image) end)
+    File.ls(image_location)
+     |> parse_ls
+     |> Enum.map(&path_for_image(&1))
+  end
+
+  defp parse_ls({:ok, image_list}) do
+    image_list
+  end
+
+  defp parse_ls({:error, _}) do
+    []
   end
 
   defp path_for_image(image) do
-    image_path = Application.get_env(:user_interface, :image_path)
-    "#{image_path}#{image}"
+    "#{image_url_path}#{image}"
   end
 
   defp placeholders do
@@ -22,10 +28,19 @@ defmodule UserInterface.ImageController do
   end
 
   defp add_placeholder_images(number) when number > 0 do
-    ["images/bacon.jpg"] ++ add_placeholder_images(number - 1)
+    ["images/placeholder.jpg"] ++ add_placeholder_images(number - 1)
   end
 
-  defp add_placeholder_images(0) do
+  defp add_placeholder_images(_) do
     []
   end
+
+  defp image_url_path do
+    Application.get_env(:user_interface, :image_path)
+  end
+
+  defp image_location do
+    Application.get_env(:user_interface, :image_location)
+  end
+
 end

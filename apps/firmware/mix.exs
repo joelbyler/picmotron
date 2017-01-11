@@ -33,9 +33,10 @@ defmodule Firmware.Mixfile do
 
   def deps do
     [
-      {:nerves, "~> 0.4.0"},
+      {:nerves, "~> 0.4.5"},
       {:nerves_leds, "~> 0.7.0"},
-      {:nerves_networking, github: "nerves-project/nerves_networking"}
+      {:nerves_networking, github: "nerves-project/nerves_networking"},
+      {:user_interface, in_umbrella: true}
     ]
   end
 

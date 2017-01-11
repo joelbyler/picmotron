@@ -11,8 +11,7 @@ use Mix.Config
 
 # import_config "#{Mix.Project.config[:target]}.exs"
 
-
-config :user_interface, Ui.Endpoint,
+config :user_interface, UserInterface.Endpoint,
   http: [port: 80],
   url: [host: "localhost", port: 80],
   secret_key_base: "Q8bCLHDz9QAcJ8ZRA2fWwUWSbglcYv3YxiLhBB2ZlRoqJydRyIWrtkllBPXtdaPp",
@@ -22,3 +21,12 @@ config :user_interface, Ui.Endpoint,
   pubsub: [name: Nerves.PubSub]
 
 config :logger, level: :debug
+
+config :user_interface,
+  image_path: "pic_images/",
+  image_location: "/root/images"
+
+config :nerves_leds, names: [ red: "led0", green: "led1" ]
+
+config :nerves, :firmware,
+  rootfs_additions: "config/rootfs-additions"
