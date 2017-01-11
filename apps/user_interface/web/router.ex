@@ -17,7 +17,7 @@ defmodule UserInterface.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/images", ImageController, :index
-    get "/", WelcomeController, :index
+    get "/*path", WelcomeController, :index
   end
 
   # Other scopes may use custom stacks.
