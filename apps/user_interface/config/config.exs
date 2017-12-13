@@ -5,11 +5,18 @@
 # is restricted to this project.
 use Mix.Config
 
+# General application configuration
+config :user_interface,
+  namespace: UserInterface
+
 # Configures the endpoint
-config :user_interface, UserInterface.Endpoint,
-  url: [host: "localhost"],
-  secret_key_base: "Q8bCLHDz9QAcJ8ZRA2fWwUWSbglcYv3YxiLhBB2ZlRoqJydRyIWrtkllBPXtdaPp",
-  render_errors: [view: UserInterface.ErrorView, accepts: ~w(html json)],
+config :user_interface, UserInterfaceWeb.Endpoint,
+  http: [port: 80],
+  url: [host: "localhost", port: 80],
+  secret_key_base: "zZu+KElJRRLi0pNoL1NAMlN1SUTMyVnNN6NnCuhEaNXj1UVpojYK4iGnGo6m8O7C",
+  root: Path.dirname(__DIR__),
+  server: true,
+  render_errors: [view: UserInterfaceWeb.ErrorView, accepts: ~w(html json)],
   pubsub: [name: UserInterface.PubSub,
            adapter: Phoenix.PubSub.PG2]
 
@@ -17,10 +24,6 @@ config :user_interface, UserInterface.Endpoint,
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",
   metadata: [:request_id]
-
-config :user_interface,
-  image_path: "pic_images/",
-  image_location: "web/static/assets/images/sample_images"
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.

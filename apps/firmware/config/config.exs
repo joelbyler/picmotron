@@ -5,11 +5,50 @@
 # is restricted to this project.
 use Mix.Config
 
-# Import target specific config. This must remain at the bottom
-# of this file so it overrides the configuration defined above.
-# Uncomment to use target specific configurations
+# Customize the firmware. Uncomment all or parts of the following
+# to add files to the root filesystem or modify the firmware
+# archive.
 
-# import_config "#{Mix.Project.config[:target]}.exs"
+config :nerves, :firmware,
+  rootfs_overlay: "config/rootfs_overlay"
+
+# Use bootloader to start the main application. See the bootloader
+# docs for separating out critical OTP applications such as those
+# involved with firmware updates.
+config :bootloader,
+  # init: [:nerves_runtime, :nerves_init_gadget, :nerves_network, :nerves_ntp],
+  init: [:nerves_runtime, :nerves_init_gadget, :nerves_ntp],
+  app: Mix.Project.config[:app]
+
+config :nerves_firmware_ssh,
+  authorized_keys: [
+    File.read!(Path.join(System.user_home!, ".ssh/nerves/id_rsa.pub"))
+  ]
+
+# config :nerves_network,
+#   regulatory_domain: "US"
+#
+# key_mgmt = System.get_env("NERVES_NETWORK_KEY_MGMT") || "WPA-PSK"
+# config :nerves_network, :default,
+#   wlan0: [
+#     ssid: System.get_env("NERVES_NETWORK_SSID"),
+#     psk: System.get_env("NERVES_NETWORK_PSK"),
+#     key_mgmt: String.to_atom(key_mgmt)
+#   ],
+#   eth0: [
+#     ipv4_address_method: :dhcp
+#   ]
+
+# ntpd binary to use
+config :nerves_ntp, :ntpd, "/usr/sbin/ntpd"
+
+# servers to sync time from
+config :nerves_ntp, :servers, [
+    "0.pool.ntp.org",
+    "1.pool.ntp.org",
+    "2.pool.ntp.org",
+    "3.pool.ntp.org"
+  ]
 
 config :user_interface, UserInterface.Endpoint,
   http: [port: 80],
@@ -20,13 +59,12 @@ config :user_interface, UserInterface.Endpoint,
   render_errors: [accepts: ~w(html json)],
   pubsub: [name: Nerves.PubSub]
 
-config :logger, level: :debug
-
 config :user_interface,
   image_path: "pic_images/",
   image_location: "/root/images"
 
-config :nerves_leds, names: [ red: "led0", green: "led1" ]
+# Import target specific config. This must remain at the bottom
+# of this file so it overrides the configuration defined above.
+# Uncomment to use target specific configurations
 
-config :nerves, :firmware,
-  rootfs_additions: "config/rootfs-additions"
+# import_config "#{Mix.Project.config[:target]}.exs"
