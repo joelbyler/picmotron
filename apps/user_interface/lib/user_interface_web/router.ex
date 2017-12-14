@@ -16,7 +16,8 @@ defmodule UserInterfaceWeb.Router do
   scope "/", UserInterfaceWeb do
     pipe_through :browser # Use the default browser stack
 
-    get "/", PageController, :index
+    get "/", VideoController, :index
+    forward "/video.mjpg", CameraStream
   end
 
   # Other scopes may use custom stacks.
