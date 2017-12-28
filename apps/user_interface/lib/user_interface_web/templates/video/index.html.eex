@@ -1,6 +1,5 @@
 <div class="text-center">
-  <%# <img src="/video.mjpg" /> %>
-  <img class="rounded" src="images/placeholder.jpg" />
+  <img class="rounded" src="/video.mjpg" />
   <br/>
   <br/>
   <a href="/new" class="btn btn-success">Snap Image</a>

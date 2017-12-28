@@ -6,12 +6,13 @@ defmodule UserInterfaceWeb.VideoController do
   end
 
   def new(conn, _params) do
+    File.mkdir(image_location())
     File.write!(Path.join(image_location(), "#{next_image_number()}.jpg"), UserInterface.Camera.adapter.next_frame)
     redirect conn, to: "/"
   end
 
   defp images do
-    File.ls(image_location)
+    File.ls(image_location())
      |> parse_ls
      |> Enum.sort(&(image_number(&1) >= image_number(&2)))
      |> Enum.map(&path_for_image(&1))
@@ -53,11 +54,11 @@ defmodule UserInterfaceWeb.VideoController do
   end
 
   defp image_url_path do
-    Application.get_env(:camera, :image_path)
+    Application.get_env(:camera, :image_path) || "pic_images/"
   end
 
   defp image_location do
-    Application.get_env(:camera, :image_location)
+    Application.get_env(:camera, :image_location) || "/root/images"
   end
 
 end

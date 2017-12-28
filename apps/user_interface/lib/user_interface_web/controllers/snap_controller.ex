@@ -12,7 +12,7 @@ defmodule UserInterfaceWeb.SnapController do
   end
 
   defp image_location do
-    Application.get_env(:user_interface, :image_location)
+    Application.get_env(:camera, :image_location)
   end
 
   defp next_image_number do

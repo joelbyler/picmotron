@@ -28,8 +28,8 @@ defmodule UserInterfaceWeb.Endpoint do
     json_decoder: Poison
 
   plug Plug.Static,
-    at: Application.get_env(:camera, :image_path),
-    from: Application.get_env(:camera, :image_location),
+    at: Application.get_env(:camera, :image_path) || "pic_images/",
+    from: Application.get_env(:camera, :image_location) || "/root/images",
     gzip: false
 
   plug Plug.MethodOverride

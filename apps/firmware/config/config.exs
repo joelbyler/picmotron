@@ -59,6 +59,11 @@ config :user_interface, UserInterface.Endpoint,
   render_errors: [accepts: ~w(html json)],
   pubsub: [name: Nerves.PubSub]
 
+config :camera,
+  adapter: Picam,
+  image_path: "pic_images/",
+  image_location: "/root/images"
+
 # Import target specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 # Uncomment to use target specific configurations

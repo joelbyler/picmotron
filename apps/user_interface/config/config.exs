@@ -26,7 +26,7 @@ config :logger, :console,
   metadata: [:request_id]
 
 config :camera,
-  adapter: UserInterface.Adapters.Picam,
+  adapter: Picam,
   image_path: "pic_images/",
   image_location: "/root/images"
 
