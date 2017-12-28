@@ -7,7 +7,7 @@ defmodule UserInterfaceWeb.CameraStream do
   def init(opts), do: opts
 
   def call(conn, _opts) do
-    Picam.set_rotation(180)
+    camera.set_rotation(180)
     conn
     |> put_resp_header("Age", "0")
     |> put_resp_header("Cache-Control", "no-cache, private")
@@ -23,7 +23,7 @@ defmodule UserInterfaceWeb.CameraStream do
   end
 
   defp send_picture(conn) do
-    jpg = Picam.next_frame
+    jpg = camera.next_frame
     size = byte_size(jpg)
     header = "------#{@boundary}\r\nContent-Type: image/jpeg\r\nContent-length: #{size}\r\n\r\n"
     footer = "\r\n"
@@ -31,5 +31,9 @@ defmodule UserInterfaceWeb.CameraStream do
          {:ok, conn} <- chunk(conn, jpg),
          {:ok, conn} <- chunk(conn, footer),
       do: conn
+  end
+
+  defp camera() do
+    UserInterface.Camera.adapter
   end
 end

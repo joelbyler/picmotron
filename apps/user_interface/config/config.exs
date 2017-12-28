@@ -25,6 +25,11 @@ config :logger, :console,
   format: "$time $metadata[$level] $message\n",
   metadata: [:request_id]
 
+config :camera,
+  adapter: UserInterface.Adapters.Picam,
+  image_path: "pic_images/",
+  image_location: "/root/images"
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env}.exs"

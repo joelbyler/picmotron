@@ -27,6 +27,11 @@ defmodule UserInterfaceWeb.Endpoint do
     pass: ["*/*"],
     json_decoder: Poison
 
+  plug Plug.Static,
+    at: Application.get_env(:camera, :image_path),
+    from: Application.get_env(:camera, :image_location),
+    gzip: false
+
   plug Plug.MethodOverride
   plug Plug.Head
 

@@ -14,6 +14,11 @@ config :user_interface, UserInterfaceWeb.Endpoint,
   watchers: [node: ["node_modules/brunch/bin/brunch", "watch", "--stdin",
                     cd: Path.expand("../assets", __DIR__)]]
 
+config :camera,
+  adapter: UserInterface.Adapters.Fake.Picam,
+  image_path: "pic_images/",
+  image_location: "assets/static/images/sample_images"
+
 # ## SSL Support
 #
 # In order to use HTTPS in development, a self-signed
