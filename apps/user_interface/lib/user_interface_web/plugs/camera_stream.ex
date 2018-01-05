@@ -7,7 +7,9 @@ defmodule UserInterfaceWeb.CameraStream do
   def init(opts), do: opts
 
   def call(conn, _opts) do
-    camera.set_rotation(180)
+    camera.set_rotation(270)
+    camera.set_size(1028, 0)
+
     conn
     |> put_resp_header("Age", "0")
     |> put_resp_header("Cache-Control", "no-cache, private")

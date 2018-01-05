@@ -8,6 +8,7 @@ defmodule Firmware.Application do
 
     # Define workers and child supervisors to be supervised
     children = [
+      worker(Firmware.TimelapsePics, [])
     ]
     setup_network()
 

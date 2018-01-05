@@ -7,7 +7,8 @@ use Mix.Config
 
 # General application configuration
 config :user_interface,
-  namespace: UserInterface
+  namespace: UserInterface,
+  env: Mix.env
 
 # Configures the endpoint
 config :user_interface, UserInterfaceWeb.Endpoint,

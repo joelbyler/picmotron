@@ -16,7 +16,6 @@ config :user_interface, UserInterfaceWeb.Endpoint,
 
 config :camera,
   adapter: UserInterface.Adapters.Fake.Picam,
-  image_path: "pic_images/",
   image_location: "assets/static/images/sample_images"
 
 # ## SSL Support

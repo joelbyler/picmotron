@@ -1,6 +1,7 @@
 defmodule UserInterface.Adapters.Fake.Picam do
 
   def set_rotation(_), do: nil
+  def set_size(_, _), do: nil
 
   def next_frame() do
     {:ok, bits} = File.read("#{Application.app_dir(:user_interface, "priv")}/static/images/placeholder.jpg")

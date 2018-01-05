@@ -9,4 +9,4 @@ export NERVES_NETWORK_KEY_MGMT=WPA-PSK
 
 mix deps.get
 mix firmware
-mix firmware.push nerves.local --user-dir ~/.ssh/nerves
+mix firmware.push nerves.local --user-dir ~/.ssh/nerves || mix firmware.push nerves.local --user-dir ~/.ssh/nerves

@@ -12,6 +12,9 @@ use Mix.Config
 config :nerves, :firmware,
   rootfs_overlay: "config/rootfs_overlay"
 
+config :firmware,
+  timelapse_period: 2 * 60 * 1000 # 2 minutes
+
 # Use bootloader to start the main application. See the bootloader
 # docs for separating out critical OTP applications such as those
 # involved with firmware updates.
@@ -25,19 +28,12 @@ config :nerves_firmware_ssh,
     File.read!(Path.join(System.user_home!, ".ssh/nerves/id_rsa.pub"))
   ]
 
-# config :nerves_network,
-#   regulatory_domain: "US"
-#
-# key_mgmt = System.get_env("NERVES_NETWORK_KEY_MGMT") || "WPA-PSK"
-# config :nerves_network, :default,
-#   wlan0: [
-#     ssid: System.get_env("NERVES_NETWORK_SSID"),
-#     psk: System.get_env("NERVES_NETWORK_PSK"),
-#     key_mgmt: String.to_atom(key_mgmt)
-#   ],
-#   eth0: [
-#     ipv4_address_method: :dhcp
-#   ]
+config :nerves_init_gadget,
+  ifname: "usb0",
+  address_method: :linklocal,
+  mdns_domain: "nerves.local",
+  node_name: nil,
+  node_host: :mdns_domain
 
 # ntpd binary to use
 config :nerves_ntp, :ntpd, "/usr/sbin/ntpd"
