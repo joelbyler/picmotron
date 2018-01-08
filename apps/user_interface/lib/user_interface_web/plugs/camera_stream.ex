@@ -7,8 +7,8 @@ defmodule UserInterfaceWeb.CameraStream do
   def init(opts), do: opts
 
   def call(conn, _opts) do
-    camera.set_rotation(270)
-    camera.set_size(1028, 0)
+    camera().set_rotation(90)
+    camera().set_size(1028, 0)
 
     conn
     |> put_resp_header("Age", "0")
@@ -25,7 +25,7 @@ defmodule UserInterfaceWeb.CameraStream do
   end
 
   defp send_picture(conn) do
-    jpg = camera.next_frame
+    jpg = camera().next_frame()
     size = byte_size(jpg)
     header = "------#{@boundary}\r\nContent-Type: image/jpeg\r\nContent-length: #{size}\r\n\r\n"
     footer = "\r\n"
@@ -36,6 +36,6 @@ defmodule UserInterfaceWeb.CameraStream do
   end
 
   defp camera() do
-    UserInterface.Camera.adapter
+    CameraControls.Camera.adapter
   end
 end

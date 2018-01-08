@@ -1,3 +1,2 @@
 defmodule Firmware do
-  
 end

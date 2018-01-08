@@ -40,6 +40,7 @@ defmodule UserInterface.Mixfile do
       {:phoenix_pubsub, "~> 1.0"},
       {:phoenix_html, "~> 2.10"},
       {:phoenix_live_reload, "~> 1.0", only: :dev},
+      {:camera_controls, in_umbrella: true},
       {:gettext, "~> 0.11"},
       {:picam, "~> 0.1"},
       {:cowboy, "~> 1.0"}

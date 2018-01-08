@@ -1,4 +1,4 @@
-defmodule UserInterface.Adapters.Fake.Picam do
+defmodule CameraControls.Adapters.Fake.Picam do
 
   def set_rotation(_), do: nil
   def set_size(_, _), do: nil

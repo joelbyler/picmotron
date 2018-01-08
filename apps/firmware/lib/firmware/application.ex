@@ -8,8 +8,10 @@ defmodule Firmware.Application do
 
     # Define workers and child supervisors to be supervised
     children = [
-      worker(Firmware.TimelapsePics, [])
+      worker(CameraControls.Camera.camera(), []),
+      worker(CameraControls.Timelapse, [])
     ]
+
     setup_network()
 
     # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html
@@ -30,14 +32,13 @@ defmodule Firmware.Application do
     System.cmd("dnsmasq", ["--dhcp-lease", "/root/dnsmasq.lease"]) |> print_cmd_result
     #
     System.cmd("hostapd", ["-B", "-d", "/etc/hostapd/hostapd.conf"]) |> print_cmd_result
-
   end
+
   defp print_cmd_result({message, 0}) do
-    IO.puts message
+    IO.puts(message)
   end
 
   defp print_cmd_result({message, err_no}) do
-    IO.puts "ERROR (#{err_no}): #{message}"
+    IO.puts("ERROR (#{err_no}): #{message}")
   end
-
 end

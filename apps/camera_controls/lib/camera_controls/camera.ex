@@ -1,4 +1,4 @@
-defmodule UserInterface.Camera do
+defmodule CameraControls.Camera do
   @adapter Application.get_env(:camera, :adapter)
 
   def adapter() do

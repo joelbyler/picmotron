@@ -9,11 +9,7 @@ use Mix.Config
 # to add files to the root filesystem or modify the firmware
 # archive.
 
-config :nerves, :firmware,
-  rootfs_overlay: "config/rootfs_overlay"
-
-config :firmware,
-  timelapse_period: 2 * 60 * 1000 # 2 minutes
+config :nerves, :firmware, rootfs_overlay: "config/rootfs_overlay"
 
 # Use bootloader to start the main application. See the bootloader
 # docs for separating out critical OTP applications such as those
@@ -21,11 +17,11 @@ config :firmware,
 config :bootloader,
   # init: [:nerves_runtime, :nerves_init_gadget, :nerves_network, :nerves_ntp],
   init: [:nerves_runtime, :nerves_init_gadget, :nerves_ntp],
-  app: Mix.Project.config[:app]
+  app: Mix.Project.config()[:app]
 
 config :nerves_firmware_ssh,
   authorized_keys: [
-    File.read!(Path.join(System.user_home!, ".ssh/nerves/id_rsa.pub"))
+    File.read!(Path.join(System.user_home!(), ".ssh/nerves/id_rsa.pub"))
   ]
 
 config :nerves_init_gadget,
@@ -40,11 +36,11 @@ config :nerves_ntp, :ntpd, "/usr/sbin/ntpd"
 
 # servers to sync time from
 config :nerves_ntp, :servers, [
-    "0.pool.ntp.org",
-    "1.pool.ntp.org",
-    "2.pool.ntp.org",
-    "3.pool.ntp.org"
-  ]
+  "0.pool.ntp.org",
+  "1.pool.ntp.org",
+  "2.pool.ntp.org",
+  "3.pool.ntp.org"
+]
 
 config :user_interface, UserInterface.Endpoint,
   http: [port: 80],
