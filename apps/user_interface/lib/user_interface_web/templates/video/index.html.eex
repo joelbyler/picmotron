@@ -1,0 +1,14 @@
+<div class="text-center">
+  <img class="img-responsive" src="<%= video_image_source() %>" />
+</div>
+
+<br/>
+<div class="row">
+  <%= for image <- @images do %>
+    <div class="col-xs-6 col-md-3">
+      <a href="<%= image %>" class="thumbnail">
+        <img src="<%= image %>" alt="fun times at codemash">
+      </a>
+    </div>
+  <% end %>
+</div>
