@@ -22,7 +22,7 @@ body, form, ul, table {
   border-bottom: 1px solid #e5e5e5;
 }
 .logo {
-  font-size: 60px;
+  font-size: 42px;
   display: inline-block;
   margin-bottom: 6px;
 }
@@ -39,7 +39,11 @@ body, form, ul, table {
   .container {
     max-width: 730px;
   }
+  .logo {
+    font-size: 60px;
+  }
 }
+
 .container-narrow > hr {
   margin: 30px 0;
 }
@@ -70,5 +74,8 @@ body, form, ul, table {
   /* Remove the bottom border on the jumbotron for visual effect */
   .jumbotron {
     border-bottom: 0;
+  }
+  .logo {
+    font-size: 60px;
   }
 }

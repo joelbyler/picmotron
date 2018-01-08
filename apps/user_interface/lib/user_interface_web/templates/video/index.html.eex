@@ -1,5 +1,5 @@
 <div class="text-center">
-  <img class="rounded" src="<%= video_image_source() %>" />
+  <img class="img-responsive" src="<%= video_image_source() %>" />
 </div>
 
 <br/>
