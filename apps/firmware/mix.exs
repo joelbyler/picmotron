@@ -76,12 +76,10 @@ defmodule Firmware.Mixfile do
     ] ++ system(target)
   end
 
+  def system("rpi0_ap"), do: [{:nerves_system_rpi0_ap, path: "../../../nerves_system_rpi0_ap", runtime: false}]
+
   def system("rpi"), do: [{:nerves_system_rpi, ">= 0.0.0", runtime: false}]
   def system("rpi0"), do: [{:nerves_system_rpi0, ">= 0.0.0", runtime: false}]
-
-  def system("rpi0_ap"),
-    do: [{:nerves_system_rpi0_ap, path: "../../../nerves_system_rpi0_ap", runtime: false}]
-
   def system("rpi2"), do: [{:nerves_system_rpi2, ">= 0.0.0", runtime: false}]
   def system("rpi3"), do: [{:nerves_system_rpi3, ">= 0.0.0", runtime: false}]
   def system("bbb"), do: [{:nerves_system_bbb, ">= 0.0.0", runtime: false}]
